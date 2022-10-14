@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 bevy = { version = "0.8.1", features = ["dynamic"] }
+bevy_flycam = "0.8.1"
 
 [profile.dev]
 opt-level = 1
