@@ -1,17 +1,12 @@
+@group(1) @binding(0)
+var<uniform> camera_position: vec3<f32>;
+
 fn sphere_sdf(sample_position: vec3<f32>, origin: vec3<f32>, radius: f32) -> f32 {
     return length(sample_position - origin) - radius;
 }
 
-fn box_sdf(sample_position: vec3<f32>, origin: vec3<f32>, dimensions: vec3<f32>) -> f32 {
-    let q = abs(sample_position - origin) - dimensions;
-    return length(max(q, vec3(0.0))) + min(max(q.x, max(q.y, q.z)), 0.0);
-}
-
 fn scene_sdf(sample_position: vec3<f32>) -> f32 {
-    let object_position = vec3(0.0, 0.0, -5.0);
-    let sphere = sphere_sdf(sample_position, object_position, 1.5);
-    let box = box_sdf(sample_position, object_position, vec3(1.0));
-    return max(-sphere, box);
+    return sphere_sdf(sample_position, vec3(0.0, 0.0, -5.0), 0.5);
 }
 
 fn calculate_normal(sample_position: vec3<f32>, epsilon: f32) -> vec3<f32> {
@@ -46,9 +41,11 @@ fn fragment(
     var direction = normalize(vec3(xy, -1.0));
     var origin = vec3(xy, 0.0);
 
+    var direction = normalize(world_position.xyz - camera_position);
+
     var depth = 0.0;
     for (var i: i32 = 0; i < max_steps; i++) {
-        var position = origin + direction * depth;
+        var position = camera_position + direction * depth;
         var distance = scene_sdf(position);
         if distance < epsilon {
             var normal = calculate_normal(position, epsilon);
@@ -62,5 +59,6 @@ fn fragment(
         }
         depth += distance;
     }
-    return vec4(0.0);
+
+    return vec4(vec3(0.0), 1.0);
 }
