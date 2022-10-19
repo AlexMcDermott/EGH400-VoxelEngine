@@ -1,3 +1,6 @@
+// https://docs.rs/bevy_pbr/latest/bevy_pbr/
+// https://github.com/bevyengine/bevy/blob/main/crates/bevy_pbr/src/render/mesh_vertex_output.wgsl
+
 @group(1) @binding(0)
 var<uniform> camera_position: vec3<f32>;
 
