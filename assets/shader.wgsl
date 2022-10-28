@@ -57,7 +57,8 @@ fn fragment(
 
             var diffuse = max(dot(normal, direction_to_light), 0.0);
             var specular = pow(max(dot(-direction, reflected), 0.0), specular_power);
-            var colour = (ambient + k_d * diffuse + k_s * specular) * light_colour * object_colour;
+            var factor = ambient + k_d * diffuse + k_s * specular;
+            var colour = factor * light_colour * object_colour;
             return vec4(colour, 1.0);
         }
         depth += distance;

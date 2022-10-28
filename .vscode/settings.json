@@ -1,3 +1,17 @@
 {
-  "cSpell.words": ["flycam", "Fookes", "Voxel", "wgsl"]
+  "cSpell.words": [
+    "flycam",
+    "Fookes",
+    "GLSL",
+    "Phong",
+    "struct",
+    "structs",
+    "Teardown",
+    "Tuxedo",
+    "Voxel",
+    "voxels",
+    "Vulkan",
+    "WGPU",
+    "wgsl"
+  ]
 }
