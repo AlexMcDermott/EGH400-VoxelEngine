@@ -1,5 +1,4 @@
-// https://docs.rs/bevy_pbr/latest/bevy_pbr/
-// https://github.com/bevyengine/bevy/blob/main/crates/bevy_pbr/src/render/mesh_vertex_output.wgsl
+#import bevy_pbr::mesh_vertex_output
 
 @group(1) @binding(0)
 var<uniform> camera_position: vec3<f32>;
@@ -24,9 +23,7 @@ fn calculate_normal(sample_position: vec3<f32>, epsilon: f32) -> vec3<f32> {
 }
 
 @fragment
-fn fragment(
-    #import bevy_pbr::mesh_vertex_output
-) -> @location(0) vec4<f32> {
+fn fragment(world_position: vec4<f32>) -> @location(0) vec4<f32> {
     let fov = 60.0;
     let max_steps = 100;
     let epsilon = 0.01;
@@ -39,10 +36,10 @@ fn fragment(
     let object_colour = vec3(0.0, 0.5, 0.5);
     let light_colour = vec3(1.0);
 
-    var apsect_ratio = 1.0;
-    var xy = (uv * 2.0 - 1.0) * vec2(apsect_ratio, -1.0) * tan(0.5 * radians(fov));
-    var direction = normalize(vec3(xy, -1.0));
-    var origin = vec3(xy, 0.0);
+    // var apsect_ratio = 1.0;
+    // var xy = (uv * 2.0 - 1.0) * vec2(apsect_ratio, -1.0) * tan(0.5 * radians(fov));
+    // var direction = normalize(vec3(xy, -1.0));
+    // var origin = vec3(xy, 0.0);
 
     var direction = normalize(world_position.xyz - camera_position);
 

@@ -1,0 +1,62 @@
+\documentclass[titlepage]{article}
+
+\usepackage[english]{babel}
+\usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage[table]{xcolor}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[acronym]{glossaries}
+\usepackage[parfill]{parskip}
+
+\bibliographystyle{IEEEtran}
+\graphicspath{{figures/}}
+\makenoidxglossaries
+
+\newacronym{qut}{QUT}{Queensland University of Technology}
+\newacronym{gpu}{GPU}{Graphics Processing Unit}
+\newacronym{api}{API}{Application Program Interface}
+\newacronym{wgsl}{WGSL}{WebGPU Shading Language}
+\newacronym{sdf}{SDF}{Signed Distance Function}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{7cm}
+
+        \Huge
+        \textbf{Creating a Voxel Rendering Engine}
+
+        \vspace{0.5cm}
+
+        \Large
+        EGH400-2 Project Delivery - Semester 1, 2023
+
+        \vspace{0.25cm}
+
+        \large
+        Supervised by Professor Clinton Fookes
+
+        \vspace{0.5cm}
+
+        \Large
+        \textbf{Alex McDermott (N10494367)}
+
+        \vfill
+
+        \Large
+        The Queensland University of Technology\\
+        \today
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\listoffigures
+\printnoidxglossary[type=\acronymtype]
+\newpage
+
+\bibliography{references}
+
+\end{document}

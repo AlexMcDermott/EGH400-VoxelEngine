@@ -13,7 +13,7 @@ fn main() {
 
 fn setup(mut commands: Commands) {
     commands
-        .spawn_bundle(Camera3dBundle {
+        .spawn(Camera3dBundle {
             transform: Transform::from_xyz(0.0, 0.0, 0.0).looking_at(Vec3::NEG_Z, Vec3::Y),
             ..default()
         })
