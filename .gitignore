@@ -3,3 +3,5 @@ target
 ~$*
 *.synctex.gz
 *.bbl
+node_moduldes
+out

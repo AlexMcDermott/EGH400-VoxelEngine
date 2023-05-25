@@ -1,17 +1,21 @@
 {
   "cSpell.words": [
+    "drei",
+    "fiber",
     "flycam",
-    "Fookes",
-    "GLSL",
-    "Phong",
+    "fookes",
+    "glsl",
+    "glslify",
+    "phong",
     "struct",
     "structs",
-    "Teardown",
-    "Tuxedo",
-    "Voxel",
+    "tailwindcss",
+    "teardown",
+    "tuxedo",
+    "voxel",
     "voxels",
-    "Vulkan",
-    "WGPU",
+    "vulkan",
+    "wgpu",
     "wgsl"
   ]
 }
