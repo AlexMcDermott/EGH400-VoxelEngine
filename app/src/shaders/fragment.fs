@@ -22,7 +22,8 @@ bool isInRange(vec3 v, float lower, float upper) {
 }
 
 bool isPositionFilled(vec3 position) {
-    vec3 samplePosition = position + vec3(0.5);
+    float scaleFactor = 1.0 / (float(resolution) / float(resolution - 1));
+    vec3 samplePosition = position * scaleFactor + vec3(0.5 + 0.5 * voxelSize);
     if (!isInRange(samplePosition, 0.0, 1.0)) { return false; }
     bool isFilled = bool(texture(voxels, samplePosition).r);
     return isFilled;
