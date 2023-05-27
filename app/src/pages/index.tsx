@@ -11,11 +11,21 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="h-screen">
-        <Canvas className="bg-orange-100">
+        <Canvas
+          orthographic={true}
+          camera={{ zoom: 50, position: [0, 0, 100] }}
+          className="bg-orange-100"
+        >
           <ambientLight intensity={0.25} />
           <pointLight position={[-5, 5, 5]} intensity={0.5} />
           <OrbitControls />
           <VoxelObject />
+          {true && (
+            <mesh>
+              <boxGeometry />
+              <meshStandardMaterial transparent opacity={0.5} />
+            </mesh>
+          )}
           <Stats />
           <axesHelper args={[2]} />
         </Canvas>
