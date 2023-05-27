@@ -1,18 +1,23 @@
-import fragmentShader from "raw-loader!glslify-loader!../shaders/fragment.glsl";
-import vertexShader from "raw-loader!glslify-loader!../shaders/vertex.glsl";
+import { Voxel } from "@/pages";
+import { useMemo } from "react";
+
+import fragmentShader from "raw-loader!glslify-loader!../shaders/fragment.fs";
+import vertexShader from "raw-loader!glslify-loader!../shaders/vertex.vs";
 
 interface VoxelObjectProps {
-  data: number[][];
+  data: Voxel[];
 }
 
-// @refresh reset
 const VoxelObject = ({ data }: VoxelObjectProps) => {
+  const uniforms = useMemo(() => ({ data: { value: data } }), [data]);
+
   return (
     <mesh>
       <boxGeometry />
-      <shaderMaterial
+      <rawShaderMaterial
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
+        uniforms={uniforms}
       />
     </mesh>
   );

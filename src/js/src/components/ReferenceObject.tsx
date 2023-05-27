@@ -1,17 +1,17 @@
+import { Voxel } from "@/pages";
+
 interface ReferenceObjectProps {
-  data: number[][];
+  data: Voxel[];
 }
 
 const ReferenceObject = ({ data }: ReferenceObjectProps) => {
   return (
     <group>
       {data.map((voxel, i) => {
-        const position = voxel.slice(0, 3) as [number, number, number];
-        const voxelSize = voxel[3];
-        const isFilled = voxel[4];
+        const { position, size, isFilled } = voxel;
         return (
           <mesh key={i} position={position}>
-            <boxGeometry args={[voxelSize, voxelSize, voxelSize]} />
+            <boxGeometry args={[size, size, size]} />
             <meshPhongMaterial
               color="red"
               transparent={true}

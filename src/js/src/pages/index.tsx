@@ -5,36 +5,49 @@ import { Canvas } from "@react-three/fiber";
 import Head from "next/head";
 import { useMemo } from "react";
 
-const generateVoxelSphere = (
+export interface Voxel {
+  position: [number, number, number];
+  size: number;
+  isFilled: 0 | 1;
+}
+
+const generateVoxelSphereUniforms = (
   cubeSize: number,
   targetDiameterInVoxels: number
 ) => {
   const radius = cubeSize / 2;
-  const voxelDiameter = Math.ceil(targetDiameterInVoxels) | 1;
-  const voxelSize = cubeSize / voxelDiameter;
+  const diameterInVoxels = Math.ceil(targetDiameterInVoxels) | 1;
+  const voxelSize = cubeSize / diameterInVoxels;
   const halfVoxelSize = voxelSize / 2;
   const lowerLimit = radius - halfVoxelSize;
   const upperLimit = radius + halfVoxelSize;
 
-  const voxelSphere = [];
-  for (let x = -lowerLimit; x <= upperLimit; x += voxelSize) {
-    for (let y = -lowerLimit; y <= upperLimit; y += voxelSize) {
-      for (let z = -lowerLimit; z <= upperLimit; z += voxelSize) {
+  const voxels = [];
+  for (let x = -lowerLimit; x < upperLimit; x += voxelSize) {
+    for (let y = -lowerLimit; y < upperLimit; y += voxelSize) {
+      for (let z = -lowerLimit; z < upperLimit; z += voxelSize) {
         const isFilled = x * x + y * y + z * z <= radius * radius;
-        voxelSphere.push([x, y, z, voxelSize, isFilled ? 1 : 0]);
+        const voxel: Voxel = {
+          position: [x, y, z],
+          size: voxelSize,
+          isFilled: isFilled ? 1 : 0,
+        };
+        voxels.push(voxel);
       }
     }
   }
 
-  return voxelSphere;
+  return voxels;
 };
 
 export default function Home() {
-  const targetDiameterInVoxels = 5;
-  const sphere = useMemo(
-    () => generateVoxelSphere(1, targetDiameterInVoxels),
+  const targetDiameterInVoxels = 3;
+  const voxels = useMemo(
+    () => generateVoxelSphereUniforms(1, targetDiameterInVoxels),
     [targetDiameterInVoxels]
   );
+
+  console.log(voxels.length);
 
   return (
     <>
@@ -48,8 +61,8 @@ export default function Home() {
           <pointLight position={[-5, 5, 5]} intensity={0.5} />
           <OrbitControls />
           <Stats />
-          {false && <VoxelObject data={sphere} />}
-          <ReferenceObject data={sphere} />
+          {true && <VoxelObject data={voxels} />}
+          {false && <ReferenceObject data={voxels} />}
           <axesHelper args={[2]} />
         </Canvas>
       </main>
