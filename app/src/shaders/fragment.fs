@@ -5,16 +5,23 @@ precision highp sampler3D;
 
 uniform vec3 cameraPosition;
 
-in vec2 uvCoordinate;
-in vec3 worldPostion;
-
 uniform int resolution;
 uniform int maxSteps;
 uniform float stepSize;
 uniform float voxelSize;
 uniform sampler3D voxels;
 
+in vec2 uvCoordinate;
+in vec3 worldPostion;
+
 out vec4 fragColor;
+
+const float INF = 1.0 / 0.0;
+
+struct Ray {
+  vec3 origin;
+  vec3 direction;
+};
 
 bool isInRange(vec3 v, float lower, float upper) {
   vec3 vClamped = clamp(v, vec3(lower), vec3(upper));
@@ -29,19 +36,20 @@ bool isPositionFilled(vec3 position) {
     return isFilled;
 }
 
-void main() {
-  vec3 rayOrigin = worldPostion;
-  vec3 rayDirection = normalize(worldPostion - cameraPosition);
-
-  bool didHit = false;
+vec3 rayCast(Ray ray) {
   for (int i = 0; i < maxSteps; i++) {
-    vec3 testPosition = rayOrigin + rayDirection * stepSize * float(i);
+    vec3 testPosition = ray.origin + ray.direction * stepSize * float(i);
     bool isFilled = isPositionFilled(testPosition);
     if (isFilled) {
-      didHit = true;
-      break;
+      return testPosition;
     }
   }
 
-  fragColor = vec4(worldPostion, float(didHit));
+  return vec3(INF);
+}
+
+void main() {
+  Ray ray = Ray(worldPostion, normalize(worldPostion - cameraPosition));
+  vec3 hitPosition = rayCast(ray);
+  fragColor = all(isinf(hitPosition)) ? vec4(0.0) : vec4(hitPosition, 1.0);
 }
