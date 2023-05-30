@@ -8,7 +8,7 @@ type Uniforms = { [uniform: string]: IUniform };
 
 const VoxelObject = () => {
   const uniforms = useMemo(() => {
-    const resolution = 21;
+    const resolution = 21 | 1;
     const maxSteps = 100;
     const stepSize = 0.01;
     const voxelSize = 1 / resolution;
@@ -18,13 +18,12 @@ const VoxelObject = () => {
     for (let z = 0; z < resolution; z++) {
       for (let y = 0; y < resolution; y++) {
         for (let x = 0; x < resolution; x++) {
-          const radius = resolution / 2;
+          const radius = (resolution - 1) / 2;
           const dx = x - radius;
           const dy = y - radius;
           const dz = z - radius;
-          const isFilled = dx * dx + dy * dy + dz * dz < radius * radius;
-          data[i] = isFilled ? 1 : 0;
-          i++;
+          const isFilled = dx * dx + dy * dy + dz * dz <= radius * radius;
+          data[i++] = isFilled ? 1 : 0;
         }
       }
     }
