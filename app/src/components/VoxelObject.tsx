@@ -8,7 +8,8 @@ type Uniforms = { [uniform: string]: IUniform };
 
 const VoxelObject = () => {
   const uniforms = useMemo(() => {
-    const resolution = 21 | 1;
+    const targetResolution = 21;
+    const resolution = targetResolution | 1;
     const maxSteps = 100;
     const stepSize = 0.01;
     const voxelSize = 1 / resolution;

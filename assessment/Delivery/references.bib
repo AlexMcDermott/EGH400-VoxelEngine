@@ -1,64 +1,110 @@
-@misc{wgpu:source,
-  author = {Wgpu},
-  title  = {Wgpu Source Code},
-  year   = {\the\year{}},
-  url    = {https://github.com/gfx-rs/wgpu}
+@inproceedings{octree,
+  title     = {Efficient sparse voxel octrees},
+  author    = {Laine, Samuli and Karras, Tero},
+  booktitle = {Proceedings of the 2010 ACM SIGGRAPH symposium on Interactive 3D Graphics and Games},
+  pages     = {55--63},
+  year      = {2010}
 }
 
-@misc{wgpu:tutorial,
-  author = {Wgpu},
-  title  = {Learn Wgpu},
-  year   = {\the\year{}},
-  url    = {https://sotrh.github.io/learn-wgpu}
+@inproceedings{streaming,
+  title     = {Gigavoxels: Ray-guided streaming for efficient and detailed voxel rendering},
+  author    = {Crassin, Cyril and Neyret, Fabrice and Lefebvre, Sylvain and Eisemann, Elmar},
+  booktitle = {Proceedings of the 2009 symposium on Interactive 3D graphics and games},
+  pages     = {15--22},
+  year      = {2009}
 }
 
-@misc{webgpu,
-  author = {W3C},
-  title  = {WebGPU Specification},
-  year   = {\the\year{}},
-  url    = {https://www.w3.org/TR/webgpu}
+@article{dda,
+  title     = {Efficient sparse voxel octrees--analysis, extensions, and implementation},
+  author    = {Laine, Samuli and Karras, Tero},
+  journal   = {NVIDIA Corporation},
+  volume    = {2},
+  number    = {6},
+  year      = {2010},
+  publisher = {Citeseer}
 }
 
-@misc{survey,
+@article{compression,
+  author   = {Dado, Bas and Kol, Timothy R. and Bauszat, Pablo and Thiery, Jean-Marc and Eisemann, Elmar},
+  title    = {Geometry and Attribute Compression for Voxel Scenes},
+  journal  = {Computer Graphics Forum},
+  volume   = {35},
+  number   = {2},
+  pages    = {397-407},
+  keywords = {Categories and Subject Descriptors (according to ACM CCS), I.3.3 Computer Graphics: Picture/Image Generation—Display algorithms, I.3.7 Computer Graphics: Three-Dimensional Graphics and Realism—Raytracing},
+  doi      = {https://doi.org/10.1111/cgf.12841},
+  url      = {https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.12841},
+  eprint   = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/cgf.12841},
+  abstract = {Abstract Voxel-based approaches are today's standard to encode volume data. Recently, directed acyclic graphs (DAGs) were successfully used for compressing sparse voxel scenes as well, but they are restricted to a single bit of (geometry) information per voxel. We present a method to compress arbitrary data, such as colors, normals, or reflectance information. By decoupling geometry and voxel data via a novel mapping scheme, we are able to apply the DAG principle to encode the topology, while using a palette-based compression for the voxel attributes, leading to a drastic memory reduction. Our method outperforms existing state-of-the-art techniques and is well-suited for GPU architectures. We achieve real-time performance on commodity hardware for colored scenes with up to 17 hierarchical levels (a 128K3voxel resolution), which are stored fully in core.},
+  year     = {2016}
+}
+
+@article{phong,
+  title     = {Fast phong shading},
+  author    = {Bishop, Gary and Weimer, David M},
+  journal   = {ACM SIGGRAPH Computer Graphics},
+  volume    = {20},
+  number    = {4},
+  pages     = {103--106},
+  year      = {1986},
+  publisher = {ACM New York, NY, USA}
+}
+
+@misc{proxy,
+  title   = {Tuxedo Labs Teardown Technical Teardown - Twitch vod 26/11},
+  url     = {https://www.youtube.com/watch?v=0VzE8ROwC58},
+  journal = {YouTube},
+  author  = {candr},
+  year    = {2020},
+  month   = {Dec}
+}
+
+@misc{minecraft,
+  url     = {https://www.minecraft.net/en-us},
+  journal = {Minecraft.net},
+  author  = {Microsoft},
+  year    = {2023},
+  month   = {Apr}
+}
+
+‌@misc{survey,
   author = {StackOverflow},
   title  = {StackOverflow Developer Survey},
   year   = {2021},
   url    = {https://insights.stackoverflow.com/survey/2021}
 }
 
-@misc{teardown:steam,
-  author = {Tuxedo Labs},
-  title  = {Teardown Steam},
-  year   = {2021},
-  url    = {https://store.steampowered.com/app/1167630/Teardown}
+@misc{magicavoxel,
+  title   = {voxel-model/MagicaVoxel-file-format-vox.txt at master · ephtracy/voxel-model},
+  url     = {https://github.com/ephtracy/voxel-model/blob/master/MagicaVoxel-file-format-vox.txt},
+  journal = {GitHub},
+  author  = {ephtracy},
+  year    = {2015}
 }
 
-@misc{phong,
-  author = {Scratchapixel},
-  title  = {The Phong Model, Introduction to the Concepts of Shader, Reflection Models and BRDF},
-  year   = {2022},
-  url    = {https://www.scratchapixel.com/lessons/3d-basic-rendering/phong-shader-BRDF}
+@misc{reddit,
+  title   = {How do I calculate the surface normal of a voxel?},
+  url     = {https://www.reddit.com/r/GraphicsProgramming/comments/tne9y7/comment/i21g1b4/},
+  journal = {Reddit.com},
+  author  = {zCybeRz},
+  year    = {2022}
 }
 
-@misc{bevy,
-  author = {Bevy},
-  title  = {Bevy},
-  year   = {2022},
-  url    = {https://bevyengine.org}
+
+@misc{dda:github,
+  title   = {fast-voxel-traversal-algorithm/FastVoxelTraversalOverview.md at master · cgyurgyik/fast-voxel-traversal-algorithm},
+  url     = {https://github.com/cgyurgyik/fast-voxel-traversal-algorithm/blob/master/overview/FastVoxelTraversalOverview.md},
+  journal = {GitHub},
+  author  = {cgyurgyik},
+  year    = {2020}
 }
 
-@misc{flycam,
-  author = {sburris0},
-  title  = {Bevy Flycam},
-  year   = {2022},
-  url    = {https://github.com/sburris0/bevy_flycam}
-}
-
-@misc{teardown:tech,
-  author = {Tuxedo Labs},
-  title  = {Tuxedo Labs Teardown Technical Teardown},
-  year   = {2020},
-  url    = {https://www.youtube.com/watch?v=0VzE8ROwC58}
+‌@misc{dda:article,
+  title   = {Lode's Computer Graphics Tutorial - Raycasting},
+  url     = {https://lodev.org/cgtutor/raycasting.html},
+  journal = {Lodev.org},
+  author  = {Lode Vandevenne},
+  year    = {2020}
 }
 
 @misc{github,
@@ -74,3 +120,5 @@
   year   = {2022},
   url    = {https://www.engineersaustralia.org.au/publications/code-ethics}
 }
+
+‌
