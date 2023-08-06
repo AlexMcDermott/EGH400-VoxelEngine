@@ -15,7 +15,7 @@ in vec3 worldPostion;
 
 out vec4 fragColor;
 
-const float INF = 1.0 / 0.0;
+const float INF = 1.0f / 0.0f;
 
 struct Ray {
   vec3 origin;
@@ -32,23 +32,25 @@ bool isInRange(vec3 v, float lower, float upper) {
   return all(equal(v, vClamped));
 }
 
-vec3 findNearestVoxelIndex(vec3 position) {
-  vec3 normalise = position + vec3(0.5);
+vec3 findNearestVoxelCentre(vec3 position) {
+  vec3 normalise = position + vec3(0.5f);
   vec3 quantize = floor(normalise / vec3(voxelSize));
-  vec3 offset = quantize + vec3(0.5 * voxelSize);
+  vec3 offset = quantize + vec3(0.5f * voxelSize);
   vec3 voxelIndex = offset / vec3(resolution);
   return voxelIndex;
 }
 
 float lookupVoxel(vec3 position) {
-  vec3 voxelIndex = findNearestVoxelIndex(position);
-  if (!isInRange(voxelIndex, 0.0, 1.0)) { return INF; }
+  vec3 voxelIndex = findNearestVoxelCentre(position);
+  if(!isInRange(voxelIndex, 0.0f, 1.0f)) {
+    return INF;
+  }
   float voxel = texture(voxels, voxelIndex).r;
   return voxel;
 }
 
 float normaliseDepth(RaycastResult result) {
-  float halfDiagonal = length(vec3(0.5));
+  float halfDiagonal = length(vec3(0.5f));
   float cameraDistance = length(cameraPosition);
   float minDepth = cameraDistance - halfDiagonal;
   float maxDepth = cameraDistance + halfDiagonal;
@@ -57,10 +59,10 @@ float normaliseDepth(RaycastResult result) {
 }
 
 RaycastResult rayCast(Ray ray) {
-  for (int i = 0; i < maxSteps; i++) {
+  for(int i = 0; i < maxSteps; i++) {
     vec3 testPosition = worldPostion + ray.direction * stepSize * float(i);
     float voxel = lookupVoxel(testPosition);
-    if (!isinf(voxel) && bool(voxel)) {
+    if(!isinf(voxel) && bool(voxel)) {
       return RaycastResult(testPosition, length(testPosition - ray.origin));
     }
   }
@@ -71,11 +73,11 @@ RaycastResult rayCast(Ray ray) {
 void main() {
   Ray ray = Ray(cameraPosition, normalize(worldPostion - cameraPosition));
   RaycastResult result = rayCast(ray);
-  if (all(isinf(result.hitPosition))) {
-    fragColor = vec4(0.0);
+  if(all(isinf(result.hitPosition))) {
+    fragColor = vec4(0.0f);
     return;
   }
 
   // fragColor = vec4(vec3(normaliseDepth(result)), 1.0);
-  fragColor = vec4(findNearestVoxelIndex(result.hitPosition), 1.0);
+  fragColor = vec4(findNearestVoxelCentre(result.hitPosition), 1.0f);
 }

@@ -4,7 +4,7 @@ import { Data3DTexture, IUniform, RedFormat } from "three";
 import fragmentShader from "raw-loader!glslify-loader!../shaders/fragment.fs";
 import vertexShader from "raw-loader!glslify-loader!../shaders/vertex.vs";
 
-type Uniforms = { [uniform: string]: IUniform };
+type VoxelUniform = { [uniform: string]: IUniform };
 
 const VoxelObject = () => {
   const uniforms = useMemo(() => {
@@ -33,13 +33,13 @@ const VoxelObject = () => {
     texture.format = RedFormat;
     texture.needsUpdate = true;
 
-    const uniforms: Uniforms = {
+    const uniforms: VoxelUniform = {
       resolution: { value: resolution },
       maxSteps: { value: maxSteps },
       stepSize: { value: stepSize },
       voxelSize: { value: voxelSize },
       voxels: { value: texture },
-    };
+    } satisfies VoxelUniform;
 
     return uniforms;
   }, []);
