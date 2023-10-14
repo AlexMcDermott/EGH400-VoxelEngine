@@ -33,15 +33,13 @@ const VoxelObject = () => {
     texture.format = RedFormat;
     texture.needsUpdate = true;
 
-    const uniforms: VoxelUniform = {
+    return {
       resolution: { value: resolution },
       maxSteps: { value: maxSteps },
       stepSize: { value: stepSize },
       voxelSize: { value: voxelSize },
       voxels: { value: texture },
     } satisfies VoxelUniform;
-
-    return uniforms;
   }, []);
 
   return (

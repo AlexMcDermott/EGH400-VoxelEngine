@@ -11,7 +11,7 @@ uniform float stepSize;
 uniform float voxelSize;
 uniform sampler3D voxels;
 
-in vec3 worldPostion;
+in vec3 worldPosition;
 
 out vec4 fragColor;
 
@@ -60,7 +60,7 @@ float normaliseDepth(RaycastResult result) {
 
 RaycastResult rayCast(Ray ray) {
   for(int i = 0; i < maxSteps; i++) {
-    vec3 testPosition = worldPostion + ray.direction * stepSize * float(i);
+    vec3 testPosition = worldPosition + ray.direction * stepSize * float(i);
     float voxel = lookupVoxel(testPosition);
     if(!isinf(voxel) && bool(voxel)) {
       return RaycastResult(testPosition, length(testPosition - ray.origin));
@@ -71,7 +71,7 @@ RaycastResult rayCast(Ray ray) {
 }
 
 void main() {
-  Ray ray = Ray(cameraPosition, normalize(worldPostion - cameraPosition));
+  Ray ray = Ray(cameraPosition, normalize(worldPosition - cameraPosition));
   RaycastResult result = rayCast(ray);
   if(all(isinf(result.hitPosition))) {
     fragColor = vec4(0.0f);
